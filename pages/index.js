@@ -16,7 +16,7 @@ const setRandomOffset = () => {
   return {
     // readable: `${dateOffset.getDay()}/${dateOffset.getMonth()}/${dateOffset.getDate()} ${dateOffset.getHours()}:${dateOffset.getMinutes()}`,
     readable: format(dateOffset, "EEE MMM do h:mm aaa"),
-    date: dateOffset.toJSON()
+    date: dateOffset.getTime()
   };
 };
 
