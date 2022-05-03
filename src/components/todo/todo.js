@@ -43,11 +43,12 @@ const Todo = (initialTodo) => {
 
   const pastDue = Date.now() - todo.due.date > 0 && !todo.completed;
 
+    console.log({todo})
   return (
     <Container pastDue={pastDue}>
       <Row>
         <p>{todo.id}</p>
-        <input type="checkbox" onClick={handleCheck} checked={todo.completed}/>
+        <input type="checkbox" onChange={handleCheck} checked={todo.completed}/>
       </Row>
         <TodoText>{todo.title}</TodoText>
         <p>Due Date: <DateString pastDue={pastDue}>{todo.due.readable}</DateString></p>
