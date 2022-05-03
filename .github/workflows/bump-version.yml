@@ -1,5 +1,0 @@
-name: "Update the package version on pushes to main"
-on:
-  push:
-    branches:
-      - main
