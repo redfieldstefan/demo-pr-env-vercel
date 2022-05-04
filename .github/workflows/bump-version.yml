@@ -3,40 +3,30 @@ on:
   push:
     branches:
       - main
+
 jobs:
-  check-bats-version:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
-          with:
-            node-version: '14'
-        - run: npm install -g bats
-        - run: bats -v
+  bump-version:
+    name: 'Bump Version on main'
+    runs-on: ubuntu-latest
 
-# jobs:
-#   bump-version:
-#     name: 'Bump Version on main'
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: 'Checkout source code'
-#         uses: 'actions/checkout@v2'
-#         with:
-#           ref: ${{ github.ref }}
-#       - name: 'cat package.json'
-#         run: cat ./package.json
-#       - name: 'Automated Version Bump'
-#         id: version-bump
-#         uses: 'phips28/gh-action-bump-version@master'
-#         with:
-#           tag-prefix: 'v'
-#           default: minor
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       - name: 'cat package.json'
-#         run: cat ./package.json
-#       - name: 'Output Step'
-#         env:
-#           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
-#         run: echo "new tag $NEW_TAG"
+    steps:
+      - name: 'Checkout source code'
+        uses: 'actions/checkout@v2'
+        with:
+          ref: ${{ github.ref }}
+      - name: 'cat package.json'
+        run: cat ./package.json
+      - name: 'Automated Version Bump'
+        id: version-bump
+        uses: 'phips28/gh-action-bump-version@master'
+        with:
+          tag-prefix: 'v'
+          default: minor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'cat package.json'
+        run: cat ./package.json
+      - name: 'Output Step'
+        env:
+          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
+        run: echo "new tag $NEW_TAG"
