@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  border: 1px dashed ${props => props.pastDue ? 'red' : 'black'};
+  border: 1px dashed ${props => props.pastDue ? 'blue' : 'black'};
   border-radius: 3px;
   padding: 5px 10px 15px 10px;
   min-height: 100px;
