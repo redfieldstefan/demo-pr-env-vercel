@@ -2,7 +2,7 @@ const StrongConfig = require("@strong-config/node");
 
 module.exports = {
     redirects() {
-      const env = process.env.WHICH_ENV;
+      const env = process.env.WHICH_ENV || "dev";
       process.env.STRONG_CONFIG_FILENAME = env;
 
       appConfig = new StrongConfig({
