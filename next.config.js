@@ -13,13 +13,13 @@ module.exports = {
       const redirectTo = () => {
         switch (appConfig?.public?.env) {
           case 'prod':
-            return '/production';
+            return 'production';
             break;
           case 'dev':
-            return '/development';
+            return 'development';
             break;
           default:
-            return '/no-env-variable'
+            return 'no-env-variable'
             break;
       }}
 
@@ -29,6 +29,18 @@ module.exports = {
           destination: redirectTo(),
           permanent: true,
         },
+      ]
+    },
+    async rewrites() {
+      return [
+        {
+          source: '/development',
+          destination: '/',
+        },
+        {
+          source: '/production',
+          destination: '/',
+        }
       ]
     }
 };
