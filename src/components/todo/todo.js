@@ -42,8 +42,6 @@ const Todo = (initialTodo) => {
   };
 
   const pastDue = Date.now() - todo.due.date > 0 && !todo.completed;
-
-    console.log({todo})
   return (
     <Container pastDue={pastDue}>
       <Row>
