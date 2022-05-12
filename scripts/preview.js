@@ -19,4 +19,4 @@ if (!config) {
 
 const execString = `yarn vercel  --build-env WHICH_ENV="${config.env}" --build-env MESSAGE="${config.message}"`;
 
-exec(execString)
+exec(execString, (error, stdout, stderr) => console.log(stdout));
