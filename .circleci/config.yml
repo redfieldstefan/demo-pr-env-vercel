@@ -7,9 +7,6 @@ jobs:
       name: node/default
       tag: '14'
     steps:
-      - run:
-        command: npm i -g vercel
-        name: Install Vercel CLI 
-      - run:
-        name: "Build Vercel Preview Env"
-        command: yarn preview
+      - run: npm i -g vercel
+      - run: yarn preview
+  
