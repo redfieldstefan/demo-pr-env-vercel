@@ -9,4 +9,8 @@ jobs:
     steps:
       - run: npm i -g vercel
       - run: yarn preview
-  
+workflows:
+  version: 2
+  build_preview:
+    jobs:
+      - preview
