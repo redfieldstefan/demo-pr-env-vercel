@@ -21,7 +21,7 @@ if (!config) {
 
 const VERCEL_CI_TOKEN = process.env.VERCEL_CI_TOKEN;
 
-const execString = `yarn vercel  --build-env WHICH_ENV="${config.env}" --build-env MESSAGE="${config.message} --token ${VERCEL_CI_TOKEN}"`;
+const execString = `yarn vercel  --build-env WHICH_ENV="${config.env}" --build-env MESSAGE="${config.message}" --token "${VERCEL_CI_TOKEN}"`;
 
 exec(execString, (error, stdout, stderr) => {
   if(error) {
