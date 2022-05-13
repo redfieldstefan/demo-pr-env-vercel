@@ -5,7 +5,6 @@ jobs:
   preview:
     executor:
       name: node/default
-      tag: '14'
     steps:
       - run: npm i -g vercel
       - run: yarn preview
