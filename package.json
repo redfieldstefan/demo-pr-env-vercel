@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "preview": "vercel --debug --token 123"
+    "preview": "vercel deploy --debug --token 123"
   },
   "dependencies": {
     "@strong-config/node": "^1.2.0",
