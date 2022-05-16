@@ -11,6 +11,7 @@ jobs:
           install-yarn: true
           node-version: "16.13"
       - run: yarn
+      - run: npm i -g vercel
       - run: yarn preview
 workflows:
   version: 2
