@@ -23,7 +23,7 @@ const VERCEL_CI_TOKEN = process.env.VERCEL_CI_TOKEN;
 
 const execString = `yarn build && vercel --token ${VERCEL_CI_TOKEN} --build-env WHICH_ENV="${config.env}" --build-env MESSAGE="${config.message}"`;
 
-exec("vercel --debug", (error, stdout, stderr) => {
+exec(`vercel --debug --token ${VERCEL_CI_TOKEN}`, (error, stdout, stderr) => {
   console.log("executed")
 
   if(error) {
