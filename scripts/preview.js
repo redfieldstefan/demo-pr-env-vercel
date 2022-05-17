@@ -21,21 +21,27 @@ if (!config) {
 
 const VERCEL_CI_TOKEN = process.env.VERCEL_CI_TOKEN;
 
-const execString = `vercel link --debug --confirm --token ${VERCEL_CI_TOKEN} && vercel --token ${VERCEL_CI_TOKEN} --build-env WHICH_ENV="${config.env}" --build-env MESSAGE="${config.message}"`;
+const linkString = `vercel link --debug --confirm --token ${VERCEL_CI_TOKEN}`;
+const buildString = `vercel --token ${VERCEL_CI_TOKEN} --confirm --build-env WHICH_ENV="${config.env}"`
 
-exec(execString, (error, stdout, stderr) => {
-  console.log("executed")
+const handleExec = (command) => {
+  return exec(command, (error, stdout, stderr) => {
+    console.log("executed")
+  
+    if(error) {
+      console.log({error})
+      return error;
+    } 
+    if(stdout) {
+      console.log({stdout})
+      return stdout;
+    }
+    if(stderr) {
+      console.log({stderr})
+      return stderr;
+    }
+  });
+}
 
-  if(error) {
-    console.log({error})
-    return error;
-  } 
-  if(stdout) {
-    console.log({stdout})
-    return stdout;
-  }
-  if(stderr) {
-    console.log({stderr})
-    return stderr;
-  }
-});
+handleExec(linkString);
+handleExec(buildString);
