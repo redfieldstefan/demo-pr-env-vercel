@@ -40,6 +40,7 @@ export default function Home({todos}) {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js app deployed with Vercel!</a>
         </h1>
+        <h3>Maybe this will be a happy scenario!</h3>
         <TodoWrapper>
         {
           todos.slice(0, 10).map(todo => <Todo key={todo.id} {...todo} />)
