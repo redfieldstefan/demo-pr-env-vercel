@@ -21,7 +21,7 @@ if (!config) {
 
 const VERCEL_CI_TOKEN = process.env.VERCEL_CI_TOKEN;
 
-const execString = `vercel link --debug --confirm --token ${VERCEL_CI_TOKEN} --build-env WHICH_ENV="${config.env}" --build-env MESSAGE="${config.message}"`;
+const execString = `vercel --debug --confirm --token ${VERCEL_CI_TOKEN} --build-env WHICH_ENV="${config.env}" --build-env MESSAGE="${config.message}"`;
 
 exec(execString, (error, stdout, stderr) => {
   console.log("executed")
