@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import {useState} from 'react';
 import styles from '../styles/Home.module.css';
-import Todo from '../src/components/todo';
+import Todo from '../src/components/todo/todo';
 import fetch from '../src/utils/fetch';
 import styled from "styled-components";
 import { format } from 'date-fns'
@@ -16,7 +16,7 @@ const setRandomOffset = () => {
   return {
     // readable: `${dateOffset.getDay()}/${dateOffset.getMonth()}/${dateOffset.getDate()} ${dateOffset.getHours()}:${dateOffset.getMinutes()}`,
     readable: format(dateOffset, "EEE MMM do h:mm aaa"),
-    date: dateOffset.toJSON()
+    date: dateOffset.getTime()
   };
 };
 
@@ -43,7 +43,7 @@ export default function Home({todos}) {
         <h3>Maybe this will be a happy scenario!</h3>
         <TodoWrapper>
         {
-          todos.slice(0, 10).map(todo => <Todo {...todo} />)
+          todos.slice(0, 10).map(todo => <Todo key={todo.id} {...todo} />)
         }
         </TodoWrapper>
       </main>
