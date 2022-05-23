@@ -20,28 +20,23 @@ if (!config) {
 }
 
 const VERCEL_CI_TOKEN = process.env.VERCEL_CI_TOKEN;
+const PR_NUMBER = process.env.CIRCLE_PR_NUMBER || "preview";
 
-const linkString = `vercel link --debug --confirm --token ${VERCEL_CI_TOKEN}`;
-const buildString = `vercel --token ${VERCEL_CI_TOKEN} --confirm --build-env WHICH_ENV="${config.env}"`
+const execString = `vercel --debug --confirm --token ${VERCEL_CI_TOKEN} --name "demo-pr-env-vercel-${PR_NUMBER}" --build-env WHICH_ENV="${config.env}" --build-env MESSAGE="${config.message}"`;
 
-const handleExec = (command) => {
-  return exec(command, (error, stdout, stderr) => {
-    console.log("executed")
-  
-    if(error) {
-      console.log({error})
-      return error;
-    } 
-    if(stdout) {
-      console.log({stdout})
-      return stdout;
-    }
-    if(stderr) {
-      console.log({stderr})
-      return stderr;
-    }
-  });
-}
+exec(execString, (error, stdout, stderr) => {
+  console.log("executed")
 
-handleExec(linkString);
-handleExec(buildString);
+  if(error) {
+    console.log({error})
+    return error;
+  } 
+  if(stdout) {
+    console.log({stdout})
+    return stdout;
+  }
+  if(stderr) {
+    console.log({stderr})
+    return stderr;
+  }
+});
