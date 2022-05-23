@@ -1,8 +1,9 @@
+import { isToday } from 'date-fns';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  border: 1px dashed black;
+  border: 1px dashed ${props => props.pastDue ? 'blue' : 'black'};
   border-radius: 3px;
   padding: 5px 10px 15px 10px;
   min-height: 100px;
@@ -25,7 +26,9 @@ const TodoText = styled.p`
   margin-bottom: 5px;
 `;
 
-
+const DateString = styled.span`
+  color: ${props => props.pastDue ? "red" : "black"};
+`;
 
 const Todo = (initialTodo) => {
 
@@ -36,16 +39,19 @@ const Todo = (initialTodo) => {
       ...todo,
       completed: !todo.completed
     })
-  }
+  };
 
+  const pastDue = Date.now() - todo.due.date > 0 && !todo.completed;
+
+    console.log({todo})
   return (
-    <Container>
+    <Container pastDue={pastDue}>
       <Row>
         <p>{todo.id}</p>
-        <input type="checkbox" onClick={handleCheck} checked={todo.completed}/>
+        <input type="checkbox" onChange={handleCheck} checked={todo.completed}/>
       </Row>
         <TodoText>{todo.title}</TodoText>
-        <p>{todo.due.readable}</p>
+        <p>Due Date: <DateString pastDue={pastDue}>{todo.due.readable}</DateString></p>
     </Container>
   )
 };
