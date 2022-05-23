@@ -25,7 +25,7 @@ const PR_NUMBER = process.env.CIRCLE_PR_NUMBER || "preview";
 const execString = `vercel --debug --confirm --token ${VERCEL_CI_TOKEN} --name "demo-pr-env-vercel-${PR_NUMBER}" --build-env WHICH_ENV="${config.env}" --build-env MESSAGE="${config.message}"`;
 
 exec(execString, (error, stdout, stderr) => {
-  console.log("executed")
+  console.log("executed and ready to go")
 
   if(error) {
     console.log({error})
